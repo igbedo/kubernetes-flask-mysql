@@ -18,7 +18,7 @@ spec:
       containers:
         - name: flaskapi
           image: igbedo/flaskapp:1
-          imagePullPolicy: Never
+          imagePullPolicy: Always 
           ports:
             - containerPort: 5000
           env:
