@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: flaskapi-app
+  annotations:
+    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/argocd-github-creds # We don't need the secret as mentioned in argocd doc because we already set it up via argocd console if you're using the same git repo.
+    argocd-image-updater.argoproj.io/image-list: igbedo/flaskapp
+    argocd-image-updater.argoproj.io/git-branch: main
+project: default
+spec:
+  source:
+    repoURL: 'https://github.com/igbedo/flaskapp-helm'
+    path: .
+    targetRevision: HEAD
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: integration 
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

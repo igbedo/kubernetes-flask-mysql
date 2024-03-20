@@ -44,7 +44,7 @@ The API can only be used if the proper database and schemas are set. This can be
 ## Expose the API
 The API can be accessed by exposing it using minikube: `minikube service flask-service`. This will return a `URL`. If you paste this to your browser you will see the `hello world` message. You can use this `service_URL` to make requests to the `API`
 
-## Start making requests
+## Start making requests and minor change and trying to make a changes. This is now with the image updater
 Now you can use the `API` to `CRUD` your database
 1. add a user: `curl -H "Content-Type: application/json" -d '{"name": "<user_name>", "email": "<user_email>", "pwd": "<user_password>"}' <service_URL>/create`
 2. get all users: `curl <service_URL>/users`
